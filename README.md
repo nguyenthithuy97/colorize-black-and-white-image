@@ -37,8 +37,8 @@ và cài đặt thêm một số gói tiện ích khác dưới đây:
 
 ### 2. Training model
 Chúng tôi cung cấp sẵn một số model đã được training, tuy nhiên khuyến khích các bạn tự training cho dự án của các bạn.
-Bạn có thể tải model tại ...
-Hoặc chạy thử với tập dữ liệu mẫu của riêng bạn bằng cách ...
+Bạn có thể tải model tại [Training Model](https://drive.google.com/file/d/1kE0oIXP5UruXEkhA2WAp7T74MHr4BuKo/view?usp=sharing) 
+Hoặc chạy thử với tập dữ liệu mẫu của riêng bạn
 
 ### 3. Running Test
 Sau khi kích hoạt môi trường Tensorflow thực hiện test như sau
