@@ -5,12 +5,15 @@ from keras.preprocessing.image import array_to_img
 from skimage.color import rgb2lab, lab2rgb, rgb2gray, gray2rgb
 from support import (
     load_pretrained_model,
+    load_pretrained_model_mat,    
     create_inception_embedding,
 )
 
 CWD_PATH = os.getcwd()
-INCEPTION_PATH = os.path.join(CWD_PATH, 'models', 
-                            'inception_resnet_v2_weights_tf_dim_ordering_tf_kernels.h5')
+MODEL_NAME_V1 = 'imagenet-vgg-verydeep-19.mat'
+MODEL_NAME_V0 = 'inception_resnet_v2_weights_tf_dim_ordering_tf_kernels.h5'
+INCEPTION_PATH = os.path.join(CWD_PATH, 'models', MODEL_NAME_V0)
+                            
 MODEL_PATH = os.path.join(CWD_PATH, 'models', 'color_tensorflow_real_mode_300.h5')
 
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
@@ -20,12 +23,28 @@ ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
 model = None
 inception = None
 
-
 def load_model():
     """Load the model"""
     global model, inception
     (model, inception) = load_pretrained_model(INCEPTION_PATH, MODEL_PATH)
+    # model = load_pretrained_model_mat(MODEL_PATH)
 
+def evaluate_input_mat(input: str):
+    global model   
+    img = image.load_img(input, target_size=(256, 256))
+    img = image.img_to_array(img)
+  
+    output = model.predict([img])
+    # Rescale the output from [-1,1] to [-128, 128]
+    output = output * 128
+    # Output colorizations
+    for i in range(len(output)):
+        cur = np.zeros((256, 256, 3))
+        # LAB representation
+        cur[:, :, 0] = color_me[i][:, :, 0]
+        cur[:, :, 1:] = output[i]
+    img = array_to_img(lab2rgb(cur))
+    return img
 
 def evaluate_input(input: str):
     global model

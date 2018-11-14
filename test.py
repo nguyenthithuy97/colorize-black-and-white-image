@@ -8,6 +8,7 @@ from werkzeug.exceptions import BadRequest
 from serving import (
     load_model,
     evaluate_input,
+    evaluate_input_mat
 )
 from support import (
 	show_img,
@@ -20,6 +21,8 @@ load_model()
 def colorsize(image_name):
 	PATH_TO_IMAGE = os.path.join(CWD_PATH, "images", image_name)
 	img = evaluate_input(PATH_TO_IMAGE)
+	# img = evaluate_input_mat(PATH_TO_IMAGE)
+
 	show_img(image.img_to_array(img))
 
 while (True):  

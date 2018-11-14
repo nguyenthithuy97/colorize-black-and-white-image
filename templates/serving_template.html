@@ -46,7 +46,7 @@
 
       var form = $('#imgForm');
       $.ajax({
-        url: window.location.href+'/image',
+        url: window.location.href+'image',
         type: form.attr('method'),
         data: formData,
         processData: false,
@@ -59,8 +59,12 @@
         error: function(xhr, err) {
           console.error(err);
           $('.loading').toggleClass('d-none');
-          $('#outputContainer').append(
+
+          $('#message').toggleClass('d-none');
+          $('#message').append(
             '<p>Got error from serving API:</p><p>'+xhr.responseText+'</p>')
+          // $('#outputContainer').append(
+          //   '<p>Got error from serving API hiuhiu:</p><p>'+xhr.responseText+'</p>')
         }
       });
     }
@@ -108,6 +112,7 @@
     <div class='col-md-6 col-sm-12'>
       <div id='outputContainer'>
         <img id='imgOutput' class="img-fluid " src="{{output}}" />
+        <div id='message'></div>
         <div class='loading d-none'><i class="fas fa-cog fa-spin fa-5x"></i></div>
       </div>
     </div>

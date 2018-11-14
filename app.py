@@ -35,10 +35,10 @@ def eval_image():
     input_buffer = BytesIO()
     output_buffer = BytesIO()
     input_file.save(input_buffer)
-
+    
     img = evaluate_input(input_buffer)
- 
-    img.save(output_buffer, format="JPG")
+
+    img.save(output_buffer, format="JPEG")
     img_str = base64.b64encode(output_buffer.getvalue())
 
     response = make_response(img_str)

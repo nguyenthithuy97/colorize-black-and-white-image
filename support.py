@@ -2,6 +2,8 @@ import requests
 import os
 import numpy as np
 
+from keras.applications.vgg16 import VGG16
+# from keras.applications.vgg19 import preprocess_input as preprocess
 from keras.applications.inception_resnet_v2 import InceptionResNetV2
 from keras.applications.inception_resnet_v2 import preprocess_input
 from keras.layers.core import RepeatVector
@@ -206,3 +208,13 @@ def load_pretrained_model(inception_wpath, colornet_wpath):
 
     print('Model loaded!')
     return(model, inception)
+
+def load_pretrained_model_mat(colornet_wpath):
+    '''Load Emil's pretrained model'''
+    print('Loading pretrained model... (it could take a while)')
+        
+    base_model = VGG16(weights=colornet_wpath)
+    model = Model(input=base_model.input, output=base_model.get_layer('block4_pool').output)
+   
+    print('Model loaded!')
+    return(model)
