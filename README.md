@@ -19,7 +19,7 @@ Sau đó kích hoạt môi trường:
 
 `(base) C:\Users\MyPC> activate tensorflow1`
 
-`       (tensorflow1) C:\Users\MyPC>`
+`       (tensorflow1) C:\Users\MyPC>pip install --ignore-installed --upgrade tensorflow`
 
 và cài đặt thêm một số gói tiện ích khác dưới đây:
 
@@ -34,6 +34,8 @@ và cài đặt thêm một số gói tiện ích khác dưới đây:
 `(tensorflow1) C:\> pip install Flask`
 
 `(tensorflow1) C:\> pip install Keras`
+
+`(tensorflow1) C:\> pip install scikit-image`
 
 ### 2. Training model
 Chúng tôi cung cấp sẵn một số model đã được training, tuy nhiên khuyến khích các bạn tự training cho dự án của các bạn.
